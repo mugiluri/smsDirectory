@@ -1,4 +1,4 @@
-# smsDirectory
+# smsDirectory - This project is developed from Arduino IDE with Eris V1 development board and it works
 Overview:
 pataNairobi project focuses on sharing directories to people who are in need of them.
 You might be stranded, for want to find someone or a place and you don't have any contacts or data/smartphone. 
