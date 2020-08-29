@@ -9,8 +9,8 @@
 //Time    : 11:01 EAT - Working Successfully
 //Board   : STM_32~Eris v1
 /*
- *For this code, we are only only using DHT 11 to collect Humidity and Temperature 
- * real time readings. You are free to remove the comments and explore the other sensors.
+ *For this code, we are going to use DHT 11 to collect Humidity and Temperature real time readings.  
+ * You are free to remove the comments and explore the other sensors.
  * Connect the DHT11 signal pin to PA7 on the eris board and GND to GND/5V to 5V
  * Connect the jumper wires and compile then upload the code to the board
  * Note: You will have to use the Africastalking simcard to access the cloud

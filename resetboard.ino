@@ -16,8 +16,8 @@ Connect the common ground to both SMS board(tophone) and reset board.
 While programming, have the boot jumper wires capped.
 You can detarch them after programming.
 Watch the blinking light on the eris board. 
-If it off, press the reset button and wait.
-Not that the purpose of this board is to reset the sms board thwice everytime it sends and sms.
+If it is off, press the reset button and wait.
+Note that the purpose of this board is to reset the sms board thwice everytime it sends and sms.
 To allow it to be able to respond to the next sms's automatically*/
 
 #define RST PB1 //Connects to the reset pin of board 1(tophone)acts like an automatic push button

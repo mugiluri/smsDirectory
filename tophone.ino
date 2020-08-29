@@ -8,7 +8,7 @@
 //Date    : 28th Aug 2020
 //Time    : 11:01 EAT - Working Successfully
 //Board   : STM_32~Eris v1
-//Companion: Reset file to receive the reset trigger is needed(2 Eris boards needed to run this project successfully)
+//Companion: [Resetboard] to receive the reset trigger that is needed(2 Eris boards needed to run this project successfully)
 
 #define TINY_GSM_MODEM_SIM800
 
