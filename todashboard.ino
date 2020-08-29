@@ -1,3 +1,22 @@
+/*------------------Pawa Tele Ltd--------------------*/
+/*-------------------GSM SIM 800---------------------*/
+/*----------------------Eris v1----------------------*/
+//Email   : anthonyhost6@gmail.com
+//Website : www.pawatele.com
+// for #TheImpossibleHack || AfricasTalking
+//Author  : Anthony Mugiluri
+//Date    : 28th Aug 2020
+//Time    : 11:01 EAT - Working Successfully
+//Board   : STM_32~Eris v1
+/*
+ *For this code, we are only only using DHT 11 to collect Humidity and Temperature 
+ * real time readings. You are free to remove the comments and explore the other sensors.
+ * Connect the DHT11 signal pin to PA7 on the eris board and GND to GND/5V to 5V
+ * Connect the jumper wires and compile then upload the code to the board
+ * Note: You will have to use the Africastalking simcard to access the cloud
+ * Remove the jumper cap, open the serial monitor and press the reset button and wait.
+ */
+
 #define TINY_GSM_MODEM_SIM800
 
 #define WARN Serial.println
@@ -10,8 +29,6 @@
 #define DEVICE_GROUP_PASSWORD "XXXXXX"
 #define MQTT_CREDENTIALS APPLICATION_USERNAME ":" DEVICE_GROUP_NAME
 #define TOPIC_PREFIX APPLICATION_USERNAME "/" DEVICE_GROUP_NAME "/"
-
-//#include "./include/config.h"
 
 #include <Countdown.h>
 #include <IPStack.h>
@@ -43,10 +60,6 @@ TinyGsm modem(SerialAT);
 TinyGsmClient tinyGSMClient(modem);
 
 #define GSM_POWER_KEY PB15
-#define RST PB1
-int resetState = 0;
-int count = 0;
-int newCount = 0;
 
 // END GSM CONFIG
 
@@ -77,7 +90,7 @@ const char *humidityTopic = TOPIC_PREFIX "humidity";
 const char *soilMoistureTopic = TOPIC_PREFIX "moisture";
 const char *temperatureTopic = TOPIC_PREFIX "temperature";
 const char *ledTopic = TOPIC_PREFIX "led";
-const char *lightIntensityTopic = TOPIC_PREFIX "logs";//Light
+const char *lightIntensityTopic = TOPIC_PREFIX "Light";
 const char *ultraSonicDataTopic = TOPIC_PREFIX "distance";
 
 const char birthMessage[] = "CONNECTED";
@@ -127,8 +140,6 @@ void setup()
         ;
     }
 
-    pinMode(RST, INPUT);
-
     pinMode(GSM_POWER_KEY, OUTPUT);
     pinMode(LED_PIN, OUTPUT);
     pinMode(LDR_PIN, INPUT_ANALOG);
@@ -136,8 +147,6 @@ void setup()
     pinMode(DHT_PIN, INPUT);
     pinMode(ECHO_PIN, INPUT);
     pinMode(TRIGGER_PIN, OUTPUT);
-
-    digitalWrite(RST, LOW);
 
     // GSM ON
     digitalWrite(GSM_POWER_KEY, 1);
@@ -153,14 +162,7 @@ void setup()
 
 void loop()
 {
-    int count;
-    resetState = digitalRead(RST);
-    if (resetState == HIGH){
-    newCount = count + 1;
-    count = newCount;
-    delay(400);
-    }
- 
+
     int isConnected = mqttClient.isConnected();
     if (!isConnected)
     {
@@ -173,7 +175,7 @@ void loop()
         sendTemperature();
         sendHumidity();
         //sendUltraSonicData();
-        sendLightIntensity();
+        //sendLightIntensity();
         mqttClient.yield(1000);
     }
     delay(5000);
@@ -238,7 +240,7 @@ void brokerConnect(void)
         snprintf(buffer, sizeof(buffer), "TCP port open \r\n");
         SerialMon.println(buffer);
     }
-    // delay(3000);
+    
     MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
     data.MQTTVersion = 4;
     data.clientID.cstring = (char *)mqttDeviceID;
@@ -319,9 +321,8 @@ void sendTemperature(void)
 
 void sendLightIntensity(void)
 {
-    int count;
-    //int intensity = analogRead(LDR_PIN);
-    snprintf(buffer, sizeof(buffer), "%i", count);//intensity
+    int intensity = analogRead(LDR_PIN);
+    snprintf(buffer, sizeof(buffer), "%i", intensity);
     publishMessage(buffer, lightIntensityTopic);
 }
 
