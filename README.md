@@ -25,7 +25,7 @@ __CONFIGURATIONS__
 __CONNECTIONS__
 For now, tophone and resetboard are connected via;
 * __GND__ to __GND__ - _Common Ground_
-* __PB1__-_tophone_ connected to __PB5__ - _resetboard_
+* __PB1__ - _tophone_ connected to __PB5__ - _resetboard_
 * __PB1__ - _resetboard_ connected to __RST__ _pin_ of the _tophone_ board 
 * Connect the __DHT11 sensor__ to _tophone_ board via __PA7__ for the signal
 
@@ -38,6 +38,8 @@ The objective is to make _todashboard_ read the serial data from _tophone_ board
 Right now both _tophone board_ and _todashboard_ have sensors connected to them independently. 
 With the serial exchange implementation, only the _todashboard_ will be connected to the sensors.
 All the three boards will be connected and seamlessly working together. Feel free to do these improvements
+
+__Log.txt:__ View this file in .gitignore to troubleshoot connectivity issues.
 
 
 
