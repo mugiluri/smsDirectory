@@ -1,4 +1,4 @@
-# smsDirectory :compass: - This project is developed from Arduino IDE with Eris V1 development board with an STM32F103 chip based on 32-bit ARM Cortex M3 from Africastalking
+# smsDirectory :compass: - This project is developed from Arduino IDE with Eris V1 development board from Africas Talking with an STM32F103 chip based on 32-bit ARM Cortex M3
 __pataNairobi__ :earth_africa: project
 
 __#Overview:__
